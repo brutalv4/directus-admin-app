@@ -23,6 +23,7 @@ import SettingsFields from "./routes/settings/fields.vue";
 import SettingsRoles from "./routes/settings/roles.vue";
 import SettingsPermissions from "./routes/settings/permissions.vue";
 import ModuleExtension from "./routes/module-extension.vue";
+import Debug from "./routes/debug";
 import hydrateStore from "@/hydrate";
 
 Vue.use(Router);
@@ -40,6 +41,13 @@ const router = new Router({
 		}
 	},
 	routes: [
+		{
+			path: "/debug",
+			component: Debug,
+			meta: {
+				publicRoute: true
+			}
+		},
 		{
 			path: "/:project/collections",
 			component: Collections

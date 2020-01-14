@@ -13,9 +13,7 @@ module.exports = {
 		public: "127.0.0.1:8080",
 		proxy: {
 			"/": {
-				target: process.env.API_URL
-					? process.env.API_URL
-					: "https://demo.directus.io/",
+				target: process.env.API_URL ? process.env.API_URL : "https://demo.directus.io/",
 				changeOrigin: true
 			}
 		}
@@ -29,6 +27,16 @@ module.exports = {
 		if (process.env.NODE_ENV === "development") {
 			config.output.filename("[name].[hash].js").end();
 		}
+
+		// Import .svg files as inline HTML text
+		const svgRule = config.module.rule("svg");
+		svgRule.uses.clear();
+		config.module
+			.rule("svg")
+			.test(/\.svg$/)
+			.use("html-loader")
+			.loader("html-loader")
+			.end();
 
 		// NOTE: This should be removed when we have main.js refactored to TypeScript
 		config
