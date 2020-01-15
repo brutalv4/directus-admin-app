@@ -1,36 +1,35 @@
 <template>
 	<span class="VIcon" :class="[sizeClass]" :style="{ color: colorStyle }">
-		<span class="custom" v-if="customIcon" v-html="customIcon.svg" />
-		<i v-else :class="{ outline }">{{ name }}</i>
+		<i :class="{ outline }">{{ name }}</i>
 	</span>
 </template>
 
 <script lang="ts">
+import { VNode } from 'vue';
 import { createComponent, reactive, computed } from '@vue/composition-api';
 import requireContext from 'require-context.macro';
 
 // Get all custom icons from the /src/assets/icons folder
 // -------------------------------------------------------------------------------------------------
 type CustomIcon = {
-	key: string;
-	svg: string;
+	[key: string]: VNode;
 };
 
-const customIcons: CustomIcon[] = [];
+const iconComponents: CustomIcon = {};
 
-const requireSVG = requireContext('../../assets/icons', false, /\w+\.(svg)$/);
+// html-loader makes sure we require the svg files as a string of html instead of process it through
+// webpack
+const requireSVG = requireContext('./custom-icons', false, /\w+\.(svg)$/);
 
 requireSVG.keys().forEach(fileName => {
 	let iconName: string;
 	const fileNameParts: string[] = fileName.split('/');
 	iconName = fileNameParts[fileNameParts.length - 1].replace(/\.[^/.]+$/, '');
-	const customIcon: CustomIcon = {
-		key: iconName,
-		svg: requireSVG(fileName)
-	};
-	customIcons.push(customIcon);
+	iconComponents[`custom-icon-${iconName}`] = requireSVG(fileName);
 });
 // -------------------------------------------------------------------------------------------------
+
+// TODO: Use iconComponents as locally registered components
 
 export default createComponent({
 	props: {
@@ -73,17 +72,12 @@ export default createComponent({
 			return null;
 		});
 
-		const customIcon = computed<CustomIcon | null>(() => {
-			return customIcons.find(icon => icon.key === props.name) || null;
-		});
-
 		const colorStyle = computed<string>(() => {
 			return props.color.startsWith('--') ? `var(${props.color})` : props.color;
 		});
 
 		return {
 			sizeClass,
-			customIcon,
 			colorStyle
 		};
 	}

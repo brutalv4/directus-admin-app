@@ -1,15 +1,15 @@
 <template>
 	<div class="debug">
-		<VIcon name="account_box" color="--purple" x-small />
-		<VIcon name="account_box" color="--blue" small />
-		<VIcon name="account_box" color="--green" />
-		<VIcon name="account_box" color="--yellow" large />
-		<VIcon name="account_box" color="--red" x-large />
+		<VIcon name="box" color="--purple" x-small />
+		<VIcon name="box" color="--blue" small />
+		<VIcon name="box" color="--green" />
+		<VIcon name="box" color="--yellow" large />
+		<VIcon name="box" color="--red" x-large />
 	</div>
 </template>
 
 <script>
-import VIcon from "@/components/VIcon/";
+import VIcon from '@/components/VIcon/';
 export default {
 	components: {
 		VIcon
