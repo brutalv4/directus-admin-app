@@ -6,7 +6,8 @@
 </template>
 
 <script lang="ts">
-import { createComponent, reactive, computed } from "@vue/composition-api";
+import { createComponent, reactive, computed } from '@vue/composition-api';
+import requireContext from 'require-context.macro';
 
 // Get all custom icons from the /src/assets/icons folder
 // -------------------------------------------------------------------------------------------------
@@ -17,12 +18,12 @@ type CustomIcon = {
 
 const customIcons: CustomIcon[] = [];
 
-const requireSVG = require.context("../../assets/icons", false, /\w+\.(svg)$/);
+const requireSVG = requireContext('../../assets/icons', false, /\w+\.(svg)$/);
 
 requireSVG.keys().forEach(fileName => {
 	let iconName: string;
-	const fileNameParts: string[] = fileName.split("/");
-	iconName = fileNameParts[fileNameParts.length - 1].replace(/\.[^/.]+$/, "");
+	const fileNameParts: string[] = fileName.split('/');
+	iconName = fileNameParts[fileNameParts.length - 1].replace(/\.[^/.]+$/, '');
 	const customIcon: CustomIcon = {
 		key: iconName,
 		svg: requireSVG(fileName)
@@ -65,10 +66,10 @@ export default createComponent({
 
 	setup(props) {
 		const sizeClass = computed<string | null>(() => {
-			if (props.xSmall) return "x-small";
-			if (props.small) return "small";
-			if (props.large) return "large";
-			if (props.xLarge) return "x-large";
+			if (props.xSmall) return 'x-small';
+			if (props.small) return 'small';
+			if (props.large) return 'large';
+			if (props.xLarge) return 'x-large';
 			return null;
 		});
 
@@ -77,7 +78,7 @@ export default createComponent({
 		});
 
 		const colorStyle = computed<string>(() => {
-			return props.color.startsWith("--") ? `var(${props.color})` : props.color;
+			return props.color.startsWith('--') ? `var(${props.color})` : props.color;
 		});
 
 		return {
@@ -138,7 +139,7 @@ export default createComponent({
 
 	i {
 		font-size: 24px;
-		font-family: "Material Icons";
+		font-family: 'Material Icons';
 		font-weight: normal;
 		font-style: normal;
 		display: inline-block;
@@ -147,11 +148,11 @@ export default createComponent({
 		letter-spacing: normal;
 		word-wrap: normal;
 		white-space: nowrap;
-		font-feature-settings: "liga";
+		font-feature-settings: 'liga';
 		vertical-align: middle;
 
 		&.outline {
-			font-family: "Material Icons Outline";
+			font-family: 'Material Icons Outline';
 		}
 	}
 
