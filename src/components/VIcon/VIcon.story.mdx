@@ -1,0 +1,54 @@
+import { Meta, Story, Props, Preview } from '@storybook/addon-docs/blocks';
+import VIcon from './VIcon.vue';
+
+<Meta title='Icon' component={VIcon} />
+
+# Icon
+
+The icon component allows you to render any [Material Design Icons](https://material.io/icons). It also supports rendering of custom SVG based icons.
+
+<Story name='intro' height='50px'>{{
+  components: { VIcon },
+  template: '<v-icon name="person" color="--blue-grey" />',
+}}</Story>
+
+## Sizes
+
+The icon component supports multiple sizes:
+
+<Preview>
+	<Story name="x-small" height="50px">
+		{{
+			components: { VIcon },
+			template: `<v-icon name="person" color="--blue-grey" x-small />`
+		}}
+	</Story>
+	<Story name="small" height="50px">
+		{{
+			components: { VIcon },
+			template: `<v-icon name="person" color="--blue-grey" small />`
+		}}
+	</Story>
+	<Story name="default" height="50px">
+		{{
+			components: { VIcon },
+			template: `<v-icon name="person" color="--blue-grey" />`
+		}}
+	</Story>
+	<Story name="large" height="50px">
+		{{
+			components: { VIcon },
+			template: `<v-icon name="person" color="--blue-grey" large />`
+		}}
+	</Story>
+	<Story name="x-large" height="50px">
+		{{
+			components: { VIcon },
+			template: `<v-icon name="person" color="--blue-grey" x-large />`
+		}}
+	</Story>
+</Preview>
+
+## Props
+
+<Props of={VIcon} />

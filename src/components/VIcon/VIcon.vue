@@ -148,6 +148,7 @@ export default createComponent({
 		word-wrap: normal;
 		white-space: nowrap;
 		font-feature-settings: "liga";
+		vertical-align: middle;
 
 		&.outline {
 			font-family: "Material Icons Outline";
