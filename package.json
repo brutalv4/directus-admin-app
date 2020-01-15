@@ -10,8 +10,8 @@
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
     "fix": "prettier --write \"src/**/*.{js,vue,ts}\"",
-    "storybook:build": "vue-cli-service storybook:build -c ./.storybook -s ./public",
-    "storybook:dev": "vue-cli-service storybook:serve -p 6006 -c ./.storybook -s ./public"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@chenfengyuan/vue-qrcode": "^1.0.1",
@@ -59,7 +59,13 @@
     "vuex-persistedstate": "^2.7.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@storybook/addon-actions": "^5.3.3",
+    "@storybook/addon-knobs": "^5.3.3",
+    "@storybook/addon-links": "^5.3.3",
+    "@storybook/addons": "^5.3.3",
+    "@storybook/vue": "^5.3.3",
     "@types/jest": "^24.0.19",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
@@ -72,16 +78,20 @@
     "@vue/eslint-config-typescript": "^4.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "autoprefixer": "^9.7.4",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "fork-ts-checker-webpack-plugin": "^3.1.1",
     "html-loader": "^0.5.5",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
     "typescript": "^3.7.4",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "webpack-merge": "^4.2.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
