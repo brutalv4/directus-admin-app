@@ -446,7 +446,10 @@ export default {
 					return availableFields.includes(field);
 				});
 
-				params.fields = params.fields.map(field => `${field}.*`);
+				params.fields = params.fields.map(
+					field =>
+						`${field}.${this.fields[field].interface === 'many-to-many' ? 'id' : '*'}`
+				);
 
 				// Make sure to always fetch the primary key. This is needed to generate the links to the
 				// detail pages
